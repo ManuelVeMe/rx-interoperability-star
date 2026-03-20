@@ -6,18 +6,40 @@ The goal is to preserve the critical business behavior of the current legacy lan
 
 ---
 
+## Mapping to Test Tasks
+
+This repository is structured to explicitly address each part of the test:
+
+1. **Simplified architecture and middleware responsibilities**  
+   → `03-target-architecture-and-flow.md`
+
+2. **FHIR integration documentation approach**  
+   → `01-fhir-integration-documentation-approach.md`
+
+3. **Rx FHIR Bundle profiling**  
+   → `04-fhir-rx-bundle-profile.md`
+
+4. **Target API and transaction flow (sync/async, validation, negative flows)**  
+   → `03-target-architecture-and-flow.md`, `05-api-spec-and-error-handling.md`
+
+5. **Assumptions and risks**  
+   → `06-assumptions-and-risks.md`
+
+6. **MVP scope and future roadmap**  
+   → `07-mvp-and-roadmap.md`
+   
 ## Repository structure
 
 - `docs/`
-  - `00-executive-summary.md` – One-page overview of the problem, goals, key design decisions, and MVP scope.
-  - `01-fhir-integration-documentation-approach.md` – Proposed structure for FHIR integration documentation to support migration, governance, onboarding, and future adoption.
-  - `02-as-is-overview.md` – Description of the current 6-step prescription workflow, assumptions, and main pain points.
-  - `03-target-architecture-and-flow.md` – To-be architecture with Rhapsody as the central integration hub, including Rx transaction flow and validation approach.
-  - `04-fhir-rx-bundle-profile.md` – Proposed FHIR Bundle profile for the prescription transaction, mapping sample fields to FHIR resources.
-  - `05-api-spec-and-error-handling.md` – RESTful interaction style, endpoints, validation gates, and negative/error flow behavior.
-  - `06-assumptions-and-risks.md` – Key assumptions, constraints, and project risks highlighted for stakeholders.
-  - `07-mvp-and-roadmap.md` – MVP vs later-phase scope and a simple phased rollout view.
-  - `08-notes-and-future-work.md` – Ideas for how this would evolve into a full implementation guide and delivery plan.
+  - `00-executive-summary.md` – High-level overview and key decisions.
+  - `01-fhir-integration-documentation-approach.md` – Documentation structure for FHIR integration, governance, and onboarding.
+  - `02-as-is-overview.md` – Current state and legacy middleware landscape.
+  - `03-target-architecture-and-flow.md` – Target architecture, validation, routing, and end-to-end Rx flow.
+  - `04-fhir-rx-bundle-profile.md` – Canonical FHIR Rx transaction definition.
+  - `05-api-spec-and-error-handling.md` – API design, validation behavior, and error handling.
+  - `06-assumptions-and-risks.md` – Key assumptions and identified risks.
+  - `07-mvp-and-roadmap.md` – MVP scope and future evolution.
+  - `08-notes-and-future-work.md` – Additional considerations and extensions.
 
 - `diagrams/`
   - `as-is-prescription-flow.puml` / `.png` – As-is system diagram of the current Rx message path (multiple sources → legacy middleware → integration engine → downstream platforms).
@@ -36,19 +58,20 @@ The goal is to preserve the critical business behavior of the current legacy lan
 
 ## How to read this case
 
-If you only have a few minutes:
+If you want a quick overview:
+- Start with [`00-executive-summary.md`](./00-executive-summary.md)
+- Then read [`03-target-architecture-and-flow.md`](./03-target-architecture-and-flow.md) for the end-to-end design
 
-1. Start with `docs/00-executive-summary.md` for the high-level problem framing, goals, and proposed direction.
-2. Look at the diagrams:
-   - `diagrams/as-is-prescription-flow.png`
-   - `diagrams/to-be-rx-flow-rhapsody-fhir.png`
-3. Skim `docs/02-target-architecture-and-flow.md` for the core architecture and Rx API flow.
+If you want to understand the interoperability model:
+- See [`01-fhir-integration-documentation-approach.md`](./01-fhir-integration-documentation-approach.md)
+- Then [`04-fhir-rx-bundle-profile.md`](./04-fhir-rx-bundle-profile.md)
 
-If you want more detail:
+If you want implementation details:
+- See [`05-api-spec-and-error-handling.md`](./05-api-spec-and-error-handling.md)
 
-- See `docs/03-fhir-rx-bundle-profile.md` for how the sample fields are mapped into a FHIR Bundle.
-- See `docs/04-api-spec-and-error-handling.md` for REST interaction style, validation layers, and error handling.
-- See `docs/05-assumptions-and-risks.md` and `docs/06-mvp-and-roadmap.md` for delivery considerations.
+For product and delivery considerations:
+- See [`06-assumptions-and-risks.md`](./06-assumptions-and-risks.md)
+- See [`07-mvp-and-roadmap.md`](./07-mvp-and-roadmap.md)
 
 ---
 

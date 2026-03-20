@@ -26,7 +26,7 @@
 
 ---
 
-## 2. Design trade‑offs (re-stated)
+## 2. Design trade‑offs
 
 To keep scope controlled and aligned with MVP, the following trade‑offs are assumed:
 

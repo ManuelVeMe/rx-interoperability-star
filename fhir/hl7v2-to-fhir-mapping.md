@@ -2,7 +2,7 @@
 
 ## 1. Purpose and scope
 
-This document describes **key mappings from typical HL7 v2 pharmacy/order messages** (e.g., ORM/RDE) into the **canonical Rx FHIR transaction Bundle** defined in `03-fhir-rx-bundle-profile.md`.
+This document describes **key mappings from typical HL7 v2 pharmacy/order messages** (e.g., ORM/RDE) into the **canonical Rx FHIR transaction Bundle** defined in [`03-fhir-rx-bundle-profile.md`](./03-fhir-rx-bundle-profile.md).
 
 - Scope: only the main fields needed for the MVP Rx flow (patient, prescriber, medication, quantity, refills, route, timing, pharmacy).  
 - Non‑goals: exhaustive segment/field coverage, all trigger events, or all local/custom Z‑segments.

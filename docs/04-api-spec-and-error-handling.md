@@ -300,3 +300,17 @@ Detailed security design is out of scope but would be specified in a real implem
 - The structure and required elements of the FHIR Rx Bundle are defined in 03-fhir-rx-bundle-profile.md.
 - The overall architecture and the positioning of these APIs within the Rhapsody platform are described in 02-target-architecture-and-flow.md.
 
+## 8. Out-of-scope (future) API actions
+
+The following actions are **intentionally out of scope for the MVP** but are expected in a full Rx API surface:
+
+- Change / modify prescription  
+  - E.g., dose change, pharmacy change, or updated instructions via a follow-up transaction or PATCH-like operation.
+- Cancel prescription  
+  - Explicit cancellation messages to downstream fulfillment platforms and corresponding status updates.
+- Search / query across prescriptions  
+  - Querying by patient, prescriber, time window, or status for operational use cases and reporting.
+- Access to original / normalized Bundles  
+  - Retrieval of the original or canonical Rx Bundle for troubleshooting and audit.
+
+These capabilities would be added in later phases, building on the same FHIR-based Rx transaction model and Rhapsody integration patterns.

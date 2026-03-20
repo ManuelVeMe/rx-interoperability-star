@@ -1,1 +1,25 @@
+@startuml ToBePrescriptionFlow
+title To-Be Rx Flow with Rhapsody & FHIR
 
+skinparam rectangle {
+  BackgroundColor White
+  BorderColor Black
+}
+
+left to right direction
+
+rectangle "Source Clinical /\nPrescribing Systems\n(multiple EHRs,\ntelehealth, etc.)\n\n-> POST FHIR Bundle" as Source
+
+rectangle "Rhapsody Integration Platform\n\n- API Gateway / FHIR Endpoint\n- Structural Validation (FHIR)\n- Business & Compliance Rules\n- Routing & Transformation\n- Logging & Observability\n- Event Export (Analytics/Audit)" as Rhapsody
+
+rectangle "Downstream Fulfillment\nPlatforms\n(hospital pharmacy,\nretail, mail-order,\nHUB, etc.)" as Targets
+
+rectangle "Analytics / Data\nPlatform\n(DWH / Data Lake)" as AnalyticsStore
+rectangle "Compliance / Audit\nTrail Store" as AuditStore
+
+Source --> Rhapsody : FHIR REST\ntransaction (Bundle)
+Rhapsody --> Targets : Routed\ntransaction\n(FHIR/HL7/other)
+Rhapsody --> AnalyticsStore : Event / data\nexport
+Rhapsody --> AuditStore : Audit-log /\ntraceability events
+
+@enduml

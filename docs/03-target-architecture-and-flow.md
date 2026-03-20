@@ -83,6 +83,8 @@ At a high level, the end‑to‑end flow is:
 
 ## 4. RESTful interaction style
 
+For MVP, we expose a simplified REST interface that accepts FHIR Bundles rather than a full generic FHIR server. This reduces integration complexity for heterogeneous clients while preserving FHIR as the canonical payload.
+
 The primary interaction style is **request/response for submission** and **optionally asynchronous for status updates**:
 
 - **Synchronous submission (prescribing → Rhapsody)**  

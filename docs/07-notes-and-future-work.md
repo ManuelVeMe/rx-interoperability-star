@@ -60,9 +60,9 @@ Several natural extensions could follow once the core Rx flow is in place:
 
 ---
 
-## 4. How this could evolve with Star’s ways of working
+## 4. How this could evolve
 
-Within a Star‑style engagement, these artifacts would be:
+After agreement, these artifacts would be:
 
 - Used as a **starting point for co‑creation workshops** with client stakeholders (clinical, technical, data, compliance).  
 - Evolved iteratively in alignment with **discovery, prototyping, and implementation sprints**.  

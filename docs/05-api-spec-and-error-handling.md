@@ -236,6 +236,56 @@ Example:
 }
 ```
 
+### 5.1.1 Example: invalid Rx Bundle (missing required field)
+
+**Scenario**
+
+A prescribing system submits a FHIR Bundle where the `MedicationRequest.medicationCodeableConcept` is missing.
+
+**Invalid input (simplified excerpt)**
+
+```json
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "status": "active",
+        "intent": "order"
+      }
+    }
+  ]
+}
+```
+
+Expected response
+
+- Status: 400 Bad Request
+- Body (OperationOutcome-aligned):
+
+```json
+{
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "status": "rejected",
+  "errorType": "validation",
+  "errors": [
+    {
+      "code": "REQUIRED_FIELD_MISSING",
+      "field": "MedicationRequest.medicationCodeableConcept",
+      "message": "Medication code is required."
+    }
+  ]
+}
+```
+
+Notes
+
+- The transaction is rejected before routing.
+- The error is deterministic and reproducible.
+- The same validation rule applies regardless of input format (FHIR or transformed HL7 v2/SCRIPT).
+
 ### 5.2 Routing/delivery errors (post-validation)
 
 If routing or delivery to downstream platforms fails:

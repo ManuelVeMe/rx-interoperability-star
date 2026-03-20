@@ -141,6 +141,8 @@ Validation is an explicit gate before any routing occurs:
 
 Only prescriptions that pass these checks are eligible for routing to fulfillment platforms. Rejected transactions are returned with clear error messages and logged.
 
+In high-throughput environments, validation must be optimized to balance strictness and performance. Critical blocking rules (structural and key business validations) are enforced synchronously, while non-critical semantic checks may be handled asynchronously or downgraded to warnings to avoid unnecessary rejection of prescriptions and to maintain system responsiveness.
+
 ---
 
 ## 7. Error and negative flows

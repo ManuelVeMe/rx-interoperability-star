@@ -1,1 +1,284 @@
-
+{
+  "resourceType": "Bundle",
+  "id": "rx-bundle-123e4567-e89b-12d3-a456-426614174000",
+  "type": "transaction",
+  "timestamp": "2026-03-20T10:15:00Z",
+  "meta": {
+    "source": "urn:system:HospitalEHR01"
+  },
+  "extension": [
+    {
+      "url": "http://example.org/fhir/StructureDefinition/correlation-id",
+      "valueString": "corr-abc-20260320-001"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:patient-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-1",
+        "identifier": [
+          {
+            "system": "urn:mrn:HospitalEHR01",
+            "value": "MRN-100001"
+          },
+          {
+            "system": "urn:internal:EnterprisePatientId",
+            "value": "PT-987654321"
+          }
+        ],
+        "name": [
+          {
+            "family": "Doe",
+            "given": [
+              "Jane"
+            ]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1975-02-15",
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+34-600-000000",
+            "use": "mobile"
+          }
+        ],
+        "address": [
+          {
+            "line": [
+              "Carrer de l'Exemple 123"
+            ],
+            "city": "Barcelona",
+            "postalCode": "08001",
+            "country": "ES"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-1",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "practitioner-1",
+        "identifier": [
+          {
+            "system": "urn:internal:PrescriberId",
+            "value": "PRES-001234"
+          },
+          {
+            "system": "urn:npi",
+            "value": "1234567890"
+          }
+        ],
+        "name": [
+          {
+            "family": "Smith",
+            "given": [
+              "John"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "+34-931-000000",
+            "use": "work"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Practitioner"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:org-prescriber-1",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "org-prescriber-1",
+        "identifier": [
+          {
+            "system": "urn:internal:OrgId",
+            "value": "HOSP-BCN-01"
+          }
+        ],
+        "name": "Barcelona General Hospital"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Organization"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:pharmacy-1",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "pharmacy-1",
+        "identifier": [
+          {
+            "system": "urn:pharmacy:id",
+            "value": "PHARM-0001"
+          }
+        ],
+        "name": "Hospital Outpatient Pharmacy",
+        "address": [
+          {
+            "line": [
+              "Carrer de la Farmàcia 10"
+            ],
+            "city": "Barcelona",
+            "postalCode": "08001",
+            "country": "ES"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Organization"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:coverage-1",
+      "resource": {
+        "resourceType": "Coverage",
+        "id": "coverage-1",
+        "identifier": [
+          {
+            "system": "urn:payer:memberid",
+            "value": "INS-123456789"
+          }
+        ],
+        "status": "active",
+        "type": {
+          "text": "Standard Plan"
+        },
+        "subscriberId": "SUB-00001234",
+        "payor": [
+          {
+            "display": "Sample Health Insurance"
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Coverage"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medrequest-1",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "medrequest-1",
+        "identifier": [
+          {
+            "system": "urn:rx:prescription-number",
+            "value": "RX-2026-000001"
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "priority": "routine",
+        "subject": {
+          "reference": "urn:uuid:patient-1"
+        },
+        "requester": {
+          "reference": "urn:uuid:practitioner-1"
+        },
+        "authoredOn": "2026-03-20T10:14:30Z",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "urn:drug:code",
+              "code": "MET500TAB",
+              "display": "Metformin 500 mg tablet"
+            }
+          ],
+          "text": "Metformin 500 mg tablet"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 tablet by mouth twice daily with meals",
+            "timing": {
+              "repeat": {
+                "frequency": 2,
+                "period": 1,
+                "periodUnit": "d"
+              }
+            },
+            "route": {
+              "text": "Oral"
+            },
+            "doseAndRate": [
+              {
+                "doseQuantity": {
+                  "value": 1,
+                  "unit": "tablet"
+                }
+              }
+            ]
+          }
+        ],
+        "dispenseRequest": {
+          "validityPeriod": {
+            "start": "2026-03-20"
+          },
+          "quantity": {
+            "value": 60,
+            "unit": "tablet"
+          },
+          "expectedSupplyDuration": {
+            "value": 30,
+            "unit": "d"
+          },
+          "numberOfRepeatsAllowed": 1,
+          "performer": {
+            "reference": "urn:uuid:pharmacy-1"
+          }
+        },
+        "substitution": {
+          "allowedBoolean": true
+        },
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "urn:icd10",
+                "code": "E11.9",
+                "display": "Type 2 diabetes mellitus without complications"
+              }
+            ]
+          }
+        ],
+        "note": [
+          {
+            "text": "No known drug allergies. Monitor GI tolerance."
+          }
+        ],
+        "insurance": [
+          {
+            "reference": "urn:uuid:coverage-1"
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://example.org/fhir/StructureDefinition/consent-flag",
+            "valueBoolean": true
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    }
+  ]
+}

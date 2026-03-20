@@ -106,6 +106,7 @@ The primary interaction style is **request/response for submission** and **optio
   - Downstream platforms send status updates (e.g., via API or messages).  
   - Rhapsody can push notifications back to the source (e.g., webhook/callback) or make them available via the status API.
 
+The detailed API contract, including request/response schemas and error models, is described in [`05-api-spec-and-error-handling.md`](./05-api-spec-and-error-handling.md).
 ---
 
 ## 5. Synchronous vs asynchronous parts

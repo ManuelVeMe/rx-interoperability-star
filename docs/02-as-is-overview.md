@@ -83,4 +83,4 @@ To support future growth, interoperability, and analytics, the company needs to:
 - Consolidate validation, routing, and analytics export into a single, well‑governed Rhapsody‑based integration layer, without directly managing partner DWHs.  
 - Improve changeability and onboarding so new sources/targets and new use cases can be supported with predictable effort and lower risk.
 
-The next document, [`02-target-architecture-and-flow.md`](./02-target-architecture-and-flow.md), describes how the target design with FHIR, REST, and Rhapsody addresses these pain points while preserving essential business behavior.
+The next document, [`03-target-architecture-and-flow.md`](./03-target-architecture-and-flow.md), describes how the target design with FHIR, REST, and Rhapsody addresses these pain points while preserving essential business behavior.

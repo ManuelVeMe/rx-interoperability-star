@@ -1,1 +1,150 @@
+{
+  "resourceType": "Bundle",
+  "id": "rx-bundle-error-123e4567-e89b-12d3-a456-426614174999",
+  "type": "transaction",
+  "timestamp": "2026-03-20T11:00:00Z",
+  "meta": {
+    "source": "urn:system:TelehealthApp01"
+  },
+  "extension": [
+    {
+      "url": "http://example.org/fhir/StructureDefinition/correlation-id",
+      "valueString": "corr-tele-20260320-err-001"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:patient-err-1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "patient-err-1",
+        "identifier": [
+          {
+            "system": "urn:mrn:TelehealthApp01",
+            "value": "MRN-ERROR-001"
+          }
+        ],
+        "name": [
+          {
+            "family": "Rossi",
+            "given": [
+              "Marco"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1980-07-01"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:practitioner-err-1",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "practitioner-err-1",
+        "identifier": [
+          {
+            "system": "urn:internal:PrescriberId",
+            "value": "PRES-ERR-0001"
+          }
+        ],
+        "name": [
+          {
+            "family": "Garcia",
+            "given": [
+              "Ana"
+            ],
+            "prefix": [
+              "Dr"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Practitioner"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:pharmacy-err-1",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "pharmacy-err-1",
+        "identifier": [
+          {
+            "system": "urn:pharmacy:id",
+            "value": "PHARM-UNKNOWN-999"
+          }
+        ],
+        "name": "Unknown Pharmacy (Invalid ID)"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Organization"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:medrequest-err-1",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "medrequest-err-1",
+        "identifier": [
+          {
+            "system": "urn:rx:prescription-number",
+            "value": "RX-ERR-0001"
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "subject": {
+          "reference": "urn:uuid:patient-err-1"
+        },
+        "requester": {
+          "reference": "urn:uuid:practitioner-err-1"
+        },
+        "authoredOn": "2026-03-20T10:59:30Z",
 
+        /* ERROR 1: Missing medication code */
+        "medicationCodeableConcept": {
+          "text": "Unknown medication (code missing)"
+        },
+
+        /* ERROR 2: Missing quantity and refills */
+        "dosageInstruction": [
+          {
+            "text": "Take as directed"
+          }
+        ],
+        "dispenseRequest": {
+          "performer": {
+            "reference": "urn:uuid:pharmacy-err-1"
+          }
+        },
+
+        /* ERROR 3: Invalid diagnosis code */
+        "reasonCode": [
+          {
+            "coding": [
+              {
+                "system": "urn:icd10",
+                "code": "INVALID-CODE",
+                "display": "Invalid diagnosis code"
+              }
+            ]
+          }
+        ],
+
+        /* ERROR 4: Missing consent flag extension (required by policy) */
+
+        "insurance": []
+      },
+      "request": {
+        "method": "POST",
+        "url": "MedicationRequest"
+      }
+    }
+  ]
+}

@@ -44,7 +44,7 @@ This repository is structured to explicitly address each part of the test:
 - `diagrams/`
   - `as-is-prescription-flow.puml` / `.png` – As-is system diagram of the current Rx message path (multiple sources → legacy middleware → integration engine → downstream platforms).
   - `to-be-rx-flow-rhapsody-fhir.puml` / `.png` – To-be architecture with a FHIR/Rhapsody-centric integration layer, validation, routing, and analytics/audit exports.
-  - `rx-sequence-flow.png` (optional) – High-level sequence diagram for a single Rx from prescribing system to fulfillment and back.
+  - `rx-sequence-flow.puml` / `.png` – High-level sequence diagram for a single Rx from prescribing system to fulfillment and back.
 
 - `fhir/`
   - `rx-bundle-example-1.json` – Example “happy path” Rx FHIR transaction Bundle with the key resources (Patient, Practitioner, MedicationRequest, Coverage, Pharmacy, etc.).

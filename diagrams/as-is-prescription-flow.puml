@@ -1,1 +1,34 @@
+@startuml AsIsPrescriptionFlow
+title As-Is Drug Prescription Workflow
 
+skinparam rectangle {
+  BackgroundColor White
+  BorderColor Black
+}
+
+left to right direction
+
+rectangle "Source Clinical /\nPrescribing Systems\n(multiple EHRs,\ntelehealth, etc.)" as Source
+
+rectangle "Legacy Middleware:\nCustom Business Logic\n(normalization, routing rules,\nenrichment)" as MW_Biz
+
+rectangle "Legacy Middleware:\nAnalytics & Audit-Trail\nData Mirroring\n(warehouse, BI,\ncompliance logs)" as MW_Analytics
+
+rectangle "Legacy Middleware:\nTransaction Compliance\n& Data Validation\n(schema, business,\ncode-system checks)" as MW_Validation
+
+rectangle "Integration Engine:\nTransaction Routing\n(connectivity, protocol\nadapters, fan-out,\nretries)" as IntEngine
+
+rectangle "Downstream Receiving /\nFulfillment Platforms\n(hospital pharmacy,\nretail, mail-order,\nHUB, etc.)" as Targets
+
+rectangle "Analytics / BI\nPlatforms" as AnalyticsStore
+rectangle "Compliance / Audit\nRepositories" as AuditStore
+
+Source --> MW_Biz : 1. Prescription\nmessage
+MW_Biz --> MW_Analytics : Mirrored data feed
+MW_Biz --> MW_Validation : 2. Normalized\ntransaction
+MW_Analytics --> AnalyticsStore : Analytics\ncopy
+MW_Analytics --> AuditStore : Audit-trail\ncopy
+MW_Validation --> IntEngine : 3. Validated\ntransaction
+IntEngine --> Targets : 4. Routed\ntransaction
+
+@enduml

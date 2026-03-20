@@ -8,12 +8,15 @@ The target state replaces multiple legacy middleware components with a **single,
 
 - **FHIR as the canonical Rx model**
   Internally, each prescription is represented as a FHIR transaction `Bundle`, providing a single canonical business transaction that groups Patient, Prescriber, MedicationRequest, Coverage, and Pharmacy context.
+  
 
 - **Rhapsody as the central integration hub**  
   Rhapsody hosts FHIR REST endpoints, performs validation and routing, and publishes standardized events to enterprise analytics and audit platforms.
 
 - **Adapters at the edges**  
   Legacy formats (HL7 v2, SCRIPT, proprietary) are handled via Rhapsody adapters at the boundaries, while the internal logic operates on the FHIR Bundle.
+
+The structure of the FHIR integration documentation supporting this architecture is described in  [`01-fhir-integration-documentation-approach.md`](./01-fhir-integration-documentation-approach.md).
 
 ### To‑Be architecture diagram
 

@@ -10,13 +10,14 @@ The goal is to preserve the critical business behavior of the current legacy lan
 
 - `docs/`
   - `00-executive-summary.md` – One-page overview of the problem, goals, key design decisions, and MVP scope.
-  - `01-as-is-overview.md` – Description of the current 6-step prescription workflow, assumptions, and main pain points.
-  - `02-target-architecture-and-flow.md` – To-be architecture with Rhapsody as the central integration hub, including Rx transaction flow and validation approach.
-  - `03-fhir-rx-bundle-profile.md` – Proposed FHIR Bundle profile for the prescription transaction, mapping sample fields to FHIR resources.
-  - `04-api-spec-and-error-handling.md` – RESTful interaction style, endpoints, validation gates, and negative/error flow behavior.
-  - `05-assumptions-and-risks.md` – Key assumptions, constraints, and project risks highlighted for stakeholders.
-  - `06-mvp-and-roadmap.md` – MVP vs later-phase scope and a simple phased rollout view.
-  - `07-notes-and-future-work.md` – Ideas for how this would evolve into a full implementation guide and delivery plan.
+  - `01-fhir-integration-documentation-approach.md` – Proposed structure for FHIR integration documentation to support migration, governance, onboarding, and future adoption.
+  - `02-as-is-overview.md` – Description of the current 6-step prescription workflow, assumptions, and main pain points.
+  - `03-target-architecture-and-flow.md` – To-be architecture with Rhapsody as the central integration hub, including Rx transaction flow and validation approach.
+  - `04-fhir-rx-bundle-profile.md` – Proposed FHIR Bundle profile for the prescription transaction, mapping sample fields to FHIR resources.
+  - `05-api-spec-and-error-handling.md` – RESTful interaction style, endpoints, validation gates, and negative/error flow behavior.
+  - `06-assumptions-and-risks.md` – Key assumptions, constraints, and project risks highlighted for stakeholders.
+  - `07-mvp-and-roadmap.md` – MVP vs later-phase scope and a simple phased rollout view.
+  - `08-notes-and-future-work.md` – Ideas for how this would evolve into a full implementation guide and delivery plan.
 
 - `diagrams/`
   - `as-is-prescription-flow.puml` / `.png` – As-is system diagram of the current Rx message path (multiple sources → legacy middleware → integration engine → downstream platforms).

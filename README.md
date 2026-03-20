@@ -59,19 +59,19 @@ This repository is structured to explicitly address each part of the test:
 ## How to read this case
 
 If you want a quick overview:
-- Start with [`00-executive-summary.md`](./00-executive-summary.md)
-- Then read [`03-target-architecture-and-flow.md`](./03-target-architecture-and-flow.md) for the end-to-end design
+- Start with [`00-executive-summary.md`](./docs/00-executive-summary.md)
+- Then read [`03-target-architecture-and-flow.md`](./docs/03-target-architecture-and-flow.md) for the end-to-end design
 
 If you want to understand the interoperability model:
-- See [`01-fhir-integration-documentation-approach.md`](./01-fhir-integration-documentation-approach.md)
-- Then [`04-fhir-rx-bundle-profile.md`](./04-fhir-rx-bundle-profile.md)
+- See [`01-fhir-integration-documentation-approach.md`](./docs/01-fhir-integration-documentation-approach.md)
+- Then [`04-fhir-rx-bundle-profile.md`](./docs/04-fhir-rx-bundle-profile.md)
 
 If you want implementation details:
-- See [`05-api-spec-and-error-handling.md`](./05-api-spec-and-error-handling.md)
+- See [`05-api-spec-and-error-handling.md`](./docs/05-api-spec-and-error-handling.md)
 
 For product and delivery considerations:
-- See [`06-assumptions-and-risks.md`](./06-assumptions-and-risks.md)
-- See [`07-mvp-and-roadmap.md`](./07-mvp-and-roadmap.md)
+- See [`06-assumptions-and-risks.md`](./docs/06-assumptions-and-risks.md)
+- See [`07-mvp-and-roadmap.md`](./docs/07-mvp-and-roadmap.md)
 
 ---
 

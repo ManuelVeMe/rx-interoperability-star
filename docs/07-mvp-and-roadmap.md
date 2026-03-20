@@ -1,4 +1,4 @@
-# 06 – MVP and Roadmap
+# 07 – MVP and Roadmap
 
 ## 1. MVP scope
 

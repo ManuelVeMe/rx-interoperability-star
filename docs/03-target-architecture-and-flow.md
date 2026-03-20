@@ -1,4 +1,4 @@
-# 02 – Target Architecture and Rx Flow
+# 03 – Target Architecture and Rx Flow
 
 ## 1. Target architecture overview
 
@@ -165,5 +165,5 @@ This model gives both operational teams and business stakeholders a clear view o
 
 ## 8. Link to other documents
 
-- The **FHIR Rx Bundle profile** used as the canonical transaction is described in detail in [`03-fhir-rx-bundle-profile.md`](./03-fhir-rx-bundle-profile.md).  
-- The concrete API surface, request/response patterns, and error schemas are detailed in [`04-api-spec-and-error-handling.md`](./04-api-spec-and-error-handling.md).
+- The **FHIR Rx Bundle profile** used as the canonical transaction is described in detail in [`04-fhir-rx-bundle-profile.md`](./04-fhir-rx-bundle-profile.md).  
+- The concrete API surface, request/response patterns, and error schemas are detailed in [`05-api-spec-and-error-handling.md`](./05-api-spec-and-error-handling.md).

@@ -1,4 +1,4 @@
-# 04 – API Spec and Error Handling
+# 05 – API Spec and Error Handling
 
 ## 1. Goals and scope
 

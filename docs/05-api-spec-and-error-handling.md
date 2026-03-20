@@ -69,6 +69,7 @@ Notes:
   ]
 }
 ```
+Errors are returned using FHIR OperationOutcome resources to ensure consistency with FHIR standards while providing structured, machine-readable feedback.
 
 Other possible codes:
 
@@ -297,8 +298,8 @@ Detailed security design is out of scope but would be specified in a real implem
 
 ## 7. Relation to other documents
 
-- The structure and required elements of the FHIR Rx Bundle are defined in 03-fhir-rx-bundle-profile.md.
-- The overall architecture and the positioning of these APIs within the Rhapsody platform are described in 02-target-architecture-and-flow.md.
+- The structure and required elements of the FHIR Rx Bundle are defined in [`04-fhir-rx-bundle-profile.md`](./04-fhir-rx-bundle-profile.md).
+- The overall architecture and the positioning of these APIs within the Rhapsody platform are described in [`03-target-architecture-and-flow.md`](./03-target-architecture-and-flow.md).
 
 ## 8. Out-of-scope (future) API actions
 

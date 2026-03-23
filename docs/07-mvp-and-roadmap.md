@@ -45,6 +45,51 @@ The MVP focuses on delivering a **single, reliable end‑to‑end Rx flow** acro
 
 ---
 
+### 1.4 MVP definition of done
+
+The MVP is considered complete when all of the following criteria are met across the in-scope systems (2 prescribing sources, 1 internal hospital pharmacy, 1 external HUB).
+
+**Functional criteria**
+
+- 100% of the 42 Rx Bundle fields from the agreed profile are mapped and exercised in end-to-end test runs for both the HL7 v2 and SCRIPT input paths.
+- All three validation layers (structural, business, semantic core) are active and returning structured OperationOutcome-aligned error responses for known invalid inputs.
+- Validated prescriptions are routed correctly to both fulfillment targets with the correct format transformation (FHIR → HL7 v2 for the hospital pharmacy; FHIR → SCRIPT or target API for the HUB).
+- Every Rx event (submitted, validated, routed, delivered, failed) is traceable end-to-end via correlation ID in the enterprise audit store.
+- `GET /rx-status/{transactionId}` reflects accurate, up-to-date status for all in-scope targets within 30 seconds of a downstream status change.
+
+**Non-functional criteria**
+
+- Validation response (`POST /rx-bundles`): p95 latency ≤ 2 seconds under representative load.
+- End-to-end routing to fulfillment: p95 ≤ 10 seconds for the happy path.
+- Rhapsody availability: ≥ 99.5% measured over a 30-day pilot window.
+- Dead-letter queue processing: all delivery failures are surfaced in the status API and audit log within 5 minutes of retry exhaustion.
+
+**Partner and operational criteria**
+
+- Both prescribing system teams and both fulfillment platform teams have signed off on their respective interface test results.
+- At least 500 real or realistic synthetic Rx transactions have been processed in the staging environment without a data-loss or silent-failure incident.
+- On-call runbook covers the three most critical failure modes: Rhapsody unavailability, downstream delivery failure, and validation spike (abnormal rejection rate).
+- Monitoring dashboard is live and alerting is configured for error rate, latency, and dead-letter queue depth.
+
+---
+
+**Go / no-go gate (Phase 0 → Phase 1)**
+
+Before build starts, the following must be confirmed in writing:
+
+| Gate item | Owner |
+|---|---|
+| Rx Bundle profile v1.0 agreed by clinical, IT, and compliance | Product owner |
+| Minimum validation rule set approved | Cross-functional working group |
+| Both prescribing system teams committed to integration timeline | Programme manager |
+| Both fulfillment platforms have confirmed test environment access | Integration lead |
+| Non-functional requirements signed off (latency, availability) | Architecture + ops |
+| Regulatory / consent requirements confirmed for in-scope markets | Compliance lead |
+
+If any gate item is unresolved at Phase 0 close, Phase 1 start date moves — scope does not shrink to compensate.
+
+---
+
 ## 2. Out‑of‑scope for MVP (later phases)
 
 The following capabilities are explicitly deferred beyond MVP to keep scope manageable:

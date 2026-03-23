@@ -100,11 +100,21 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
   - Prioritize decommissioning of highest cost / lowest value middleware components first.  
   - Track migration progress per interface as part of the roadmap.
 
+**Risk 7 – Governance gap on centralised validation rules**
+
+- Description: With validation consolidated into Rhapsody, disagreements will arise between the integration team and prescribing system teams over what constitutes a valid Rx transaction. Without a clear ownership model, rule changes become political, escalations have no defined path, and the risk of either over-blocking (rejecting valid prescriptions) or under-blocking (routing non-compliant ones) increases.  
+- Impact: Prescribers lose trust in the platform; workarounds emerge (e.g. systems gaming validation by omitting fields); regulatory exposure if compliance rules are weakened under pressure.  
+- Mitigation:  
+  - Establish a cross-functional Validation Working Group before Phase 1 build starts (see [`03-target-architecture-and-flow.md`](./03-target-architecture-and-flow.md) section 2, item 7).  
+  - Document the rule set and every change to it in a versioned Validation Rules Catalog.  
+  - Define a formal escalation path so disputes are resolved in days, not weeks, and never by silently relaxing a rule in production.  
+  - Make the VWG charter and rule catalog visible to all prescribing system teams — transparency reduces friction.
+
 ---
 
 ### 3.3 Regulatory, data‑governance, and licensing risks
 
-**Risk 7 – Regulatory requirements not fully captured in early design**
+**Risk 8 – Regulatory requirements not fully captured in early design**
 
 - Description: Some regulatory or contractual requirements (e.g., consent handling, retention, cross‑border data flows) may be missed initially.  
 - Impact: Rework, compliance gaps, or project delays.  
@@ -113,7 +123,7 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
   - Treat consent, audit, and retention as explicit requirements in the MVP.  
   - Use configurable policies where regulations differ by market.
 
-**Risk 8 – Data quality and lineage concerns**
+**Risk 9 – Data quality and lineage concerns**
 
 - Description: Stakeholders may question the reliability of analytics and audit data if lineage is not clear.  
 - Impact: Low trust in the new platform; continued reliance on legacy reports and workarounds.  
@@ -122,7 +132,7 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
   - Provide simple lineage views (e.g., which steps a transaction passed, with timestamps).  
   - Engage data/analytics teams to validate that the new event model meets their needs.
 
-**Risk 9 – Licensing and IP constraints on code systems**
+**Risk 10 – Licensing and IP constraints on code systems**
 
 - Description: Some value sets and code systems (e.g., diagnosis codes, clinical terminologies, commercial drug databases) may be subject to licensing and IP restrictions, limiting how they can be replicated or exposed across platforms.  
 - Impact: Central semantic validation and shared terminology services may be constrained; additional work may be needed to ensure compliant use and avoid duplication of licenses.  

@@ -67,6 +67,10 @@ Within the single integration platform, responsibilities are separated into clea
 
 At a high level, the end‑to‑end flow is:
 
+The following sequence diagram illustrates this flow end-to-end, from prescribing system submission through validation, routing, fulfillment, and audit publishing:
+
+![Rx End-to-End Sequence Flow](../diagrams/rx-sequence-flow.png)
+
 1. **Prescribing system → Rhapsody (ingress)**  
    - The source system submits a prescription as either:  
      - A FHIR Rx transaction `Bundle` via REST, or  

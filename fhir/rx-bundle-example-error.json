@@ -106,13 +106,9 @@
           "reference": "urn:uuid:practitioner-err-1"
         },
         "authoredOn": "2026-03-20T10:59:30Z",
-
-        /* ERROR 1: Missing medication code */
         "medicationCodeableConcept": {
           "text": "Unknown medication (code missing)"
         },
-
-        /* ERROR 2: Missing quantity and refills */
         "dosageInstruction": [
           {
             "text": "Take as directed"
@@ -123,8 +119,6 @@
             "reference": "urn:uuid:pharmacy-err-1"
           }
         },
-
-        /* ERROR 3: Invalid diagnosis code */
         "reasonCode": [
           {
             "coding": [
@@ -136,10 +130,17 @@
             ]
           }
         ],
-
-        /* ERROR 4: Missing consent flag extension (required by policy) */
-
-        "insurance": []
+        "insurance": [],
+        "extension": [
+          {
+            "url": "http://example.org/fhir/StructureDefinition/consent-flag",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://example.org/fhir/StructureDefinition/legacy-status-code",
+            "valueString": "ERR-CONSENT-MISSING"
+          }
+        ]
       },
       "request": {
         "method": "POST",

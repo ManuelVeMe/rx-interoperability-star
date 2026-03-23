@@ -53,6 +53,13 @@ Within the single integration platform, responsibilities are separated into clea
 6. **Analytics and audit export**  
    - Publishes normalized Rx events (submitted, validated, routed, delivered, failed) to enterprise **analytics and audit platforms**.  
    - Provides end‑to‑end traceability for each prescription via correlation IDs and status codes.
+  
+7. **Validation ownership and governance**  
+   - A cross-functional **Validation Working Group (VWG)** — comprising clinical, compliance, integration, and product leads plus representatives from each prescribing system team — owns the validation rule set.  
+   - Rule changes follow a defined process: proposal → VWG impact assessment → sign-off for blocking rules (or notification-only for warning-level rules) → deployment with a minimum 2-week notice to affected prescribing system teams.  
+   - All rules are versioned and documented in the Validation Rules Catalog (see [`01-fhir-integration-documentation-approach.md`](./01-fhir-integration-documentation-approach.md)).  
+   - If a prescribing system disputes a rejection, the integration team reviews within 1 business day. Unresolved disputes escalate to the product owner for a binding decision within 3 business days. Temporary rule exceptions can be issued while a dispute is under review.  
+   - No prescription is silently discarded: every rejection is logged with a correlation ID, error code, and human-readable reason accessible to the submitting system.
 
 ---
 

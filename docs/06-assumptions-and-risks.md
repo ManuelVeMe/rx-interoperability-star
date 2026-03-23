@@ -61,7 +61,17 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
   - Design for horizontal scalability and high availability of Rhapsody.  
   - Implement monitoring, alerting, and load testing before go‑live.
 
-**Risk 3 – Limited or inconsistent reference data for semantic validation**
+**Risk 3 – Single point of failure for prescription routing**
+
+- Description: Consolidating all Rx routing into a single Rhapsody hub introduces a new critical dependency. A Rhapsody outage, misconfiguration, or severe performance degradation now blocks all prescription flows simultaneously — across all prescribing systems and all fulfillment platforms. Unlike the legacy landscape where failures were more localised, a central hub failure has enterprise-wide impact with direct patient safety implications.  
+- Impact: Prescriptions cannot be submitted or routed during an outage; clinical staff may fall back to manual or paper-based processes without a defined procedure; regulatory exposure if audit trails are interrupted.  
+- Mitigation:  
+  - Design Rhapsody for high availability from the start — active/passive clustering or equivalent is not optional and must be included in MVP scope (see [`07-mvp-and-roadmap.md`](./07-mvp-and-roadmap.md) section 1.3).  
+  - Define and test a break-glass emergency procedure for manual prescription routing during a Rhapsody outage, agreed with clinical and pharmacy teams before go-live.  
+  - Set a recovery time objective (RTO) and recovery point objective (RPO) for Rhapsody as explicit non-functional requirements, not afterthoughts.  
+  - Include Rhapsody failover in load testing and disaster recovery drills before Phase 1 go-live.
+
+**Risk 4 – Limited or inconsistent reference data for semantic validation**
 
 - Description: Medication codes, diagnosis codes, pharmacy IDs, and payer IDs may be inconsistent across systems.  
 - Impact: High validation error rates; need to relax checks, reducing value of semantic validation.  
@@ -74,7 +84,7 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
 
 ### 3.2 Business and change‑management risks
 
-**Risk 4 – Partner systems’ readiness for FHIR and REST**
+**Risk 5 – Partner systems’ readiness for FHIR and REST**
 
 - Description: Some partners may be slow to adopt FHIR or may not support new APIs in the near term.  
 - Impact: Longer coexistence with legacy formats; potential friction integrating new flows.  
@@ -82,7 +92,7 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
   - Design Rhapsody as a translator at the edge, keeping FHIR internal and supporting legacy formats for key partners.  
   - Use phased onboarding with clear timelines and incentives for partners to move toward FHIR interfaces.
 
-**Risk 5 – Misalignment on validation rules and “golden source”**
+**Risk 6 – Misalignment on validation rules and “golden source”**
 
 - Description: Different stakeholders (IT, compliance, clinical, commercial) may disagree on which validations belong where and what is the golden source of truth.  
 - Impact: Conflicting rules, duplicated efforts, or unsafe/over‑lenient validation.  
@@ -91,7 +101,7 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
   - Document validation policies and ownership clearly (e.g., structural vs business vs clinical).  
   - Start with a minimal, agreed baseline for MVP and evolve based on feedback.
 
-**Risk 6 – Underestimating effort to rationalize legacy middleware**
+**Risk 7 – Underestimating effort to rationalize legacy middleware**
 
 - Description: Turning off or simplifying legacy middleware may require more analysis and migration work than anticipated.  
 - Impact: Extended dual‑running of old and new flows, higher operational burden.  
@@ -100,7 +110,7 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
   - Prioritize decommissioning of highest cost / lowest value middleware components first.  
   - Track migration progress per interface as part of the roadmap.
 
-**Risk 7 – Governance gap on centralised validation rules**
+**Risk 8 – Governance gap on centralised validation rules**
 
 - Description: With validation consolidated into Rhapsody, disagreements will arise between the integration team and prescribing system teams over what constitutes a valid Rx transaction. Without a clear ownership model, rule changes become political, escalations have no defined path, and the risk of either over-blocking (rejecting valid prescriptions) or under-blocking (routing non-compliant ones) increases.  
 - Impact: Prescribers lose trust in the platform; workarounds emerge (e.g. systems gaming validation by omitting fields); regulatory exposure if compliance rules are weakened under pressure.  
@@ -114,7 +124,7 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
 
 ### 3.3 Regulatory, data‑governance, and licensing risks
 
-**Risk 8 – Regulatory requirements not fully captured in early design**
+**Risk 9 – Regulatory requirements not fully captured in early design**
 
 - Description: Some regulatory or contractual requirements (e.g., consent handling, retention, cross‑border data flows) may be missed initially.  
 - Impact: Rework, compliance gaps, or project delays.  
@@ -123,7 +133,7 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
   - Treat consent, audit, and retention as explicit requirements in the MVP.  
   - Use configurable policies where regulations differ by market.
 
-**Risk 9 – Data quality and lineage concerns**
+**Risk 10 – Data quality and lineage concerns**
 
 - Description: Stakeholders may question the reliability of analytics and audit data if lineage is not clear.  
 - Impact: Low trust in the new platform; continued reliance on legacy reports and workarounds.  
@@ -132,7 +142,7 @@ These trade‑offs can be revisited in later phases as adoption and constraints 
   - Provide simple lineage views (e.g., which steps a transaction passed, with timestamps).  
   - Engage data/analytics teams to validate that the new event model meets their needs.
 
-**Risk 10 – Licensing and IP constraints on code systems**
+**Risk 11 – Licensing and IP constraints on code systems**
 
 - Description: Some value sets and code systems (e.g., diagnosis codes, clinical terminologies, commercial drug databases) may be subject to licensing and IP restrictions, limiting how they can be replicated or exposed across platforms.  
 - Impact: Central semantic validation and shared terminology services may be constrained; additional work may be needed to ensure compliant use and avoid duplication of licenses.  

@@ -8,6 +8,8 @@ This API specification describes how prescribing systems interact with the Rhaps
 - Style: pragmatic RESTful APIs using FHIR Bundles as the canonical transaction payload.
 - Non-goals (for this case): full FHIR server behavior, advanced search, and full national eRx IG coverage.
 
+The end-to-end sequence of interactions, including the sync/async boundary and downstream routing, is illustrated in the sequence diagram described in [`03-target-architecture-and-flow.md`](./03-target-architecture-and-flow.md) section 3.
+
 ---
 
 ## 2. Core REST endpoints

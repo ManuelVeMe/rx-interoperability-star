@@ -165,6 +165,7 @@ Legacy fields:
 | MedicationRequest.dispenseRequest.validityPeriod.start | Requested date | Optional   |
 
 > **Note on allergy summary (field 32):** For MVP, allergy summary text is captured as free text in `MedicationRequest.note`. The semantically correct FHIR resource for structured allergy data is `AllergyIntolerance`, referenced from the Bundle. This is intentionally deferred to Phase 2, when structured allergy data is reliably available from prescribing systems and the added complexity of an additional resource type is justified.
+
 ---
 
 ## 6. Coverage and payer mapping and contract
@@ -234,4 +235,11 @@ This Bundle profile is intentionally **minimal but complete** for the case study
   - Expressed as a set of formal FHIR profiles (StructureDefinitions, ValueSets, etc.).
   - Supported by conformance statements, examples, and automated validation rules.
 
-Example JSON instances for a “happy path” Rx and an error scenario are provided separately in the `fhir/` directory.
+Example JSON instances for a "happy path" Rx and an error scenario are provided separately in the `fhir/` directory.
+
+The error scenario example (`fhir/rx-bundle-example-error.json`) illustrates four validation failures in a single submission:
+
+1. Missing medication code (`MedicationRequest.medicationCodeableConcept.coding` has no code value).
+2. Missing dispense quantity and refills (`MedicationRequest.dispenseRequest.quantity` is absent).
+3. Invalid diagnosis code (`MedicationRequest.reasonCode` contains a code not in the allowed value set).
+4. Missing consent flag — the `consent-flag` extension is present but set to `false`, which fails the policy requirement for consent to be explicitly granted. The `legacy-status-code` extension captures the corresponding legacy error code for audit traceability.

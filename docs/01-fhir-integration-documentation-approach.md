@@ -9,7 +9,9 @@ This structure minimizes cognitive load for different audiences (business stakeh
 ### Business & Workflow Layer
 - Rx lifecycle diagrams and narratives
 - System actors and responsibilities
-- High-level sequence diagrams (happy path + error flows)
+- High-level sequence diagrams (happy path + error flows) — see [`rx-sequence-flow.puml`](../diagrams/rx-sequence-flow.puml) and [`rx-sequence-flow.png`](../diagrams/rx-sequence-flow.png)
+- As-is and to-be architecture diagrams — see [`as-is-prescription-flow.puml`](../diagrams/as-is-prescription-flow.puml) and [`to-be-rx-flow-rhapsody-fhir.puml`](../diagrams/to-be-rx-flow-rhapsody-fhir.puml)
+
 
 ### Canonical Transaction Layer
 - Rx FHIR Bundle definition (type=transaction)

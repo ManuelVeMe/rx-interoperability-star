@@ -1,0 +1,38 @@
+@startuml rx-sequence-flow
+title Rx Transaction Sequence (Happy + Error Paths)
+skinparam sequenceArrowThickness 2
+actor "Prescribing EHR/\nTelehealth" as EHR
+participant "Rhapsody\nFHIR/REST API" as API
+participant "Validation\nLayer" as Val
+participant "Routing\nEngine" as Route
+database "Analytics/\nAudit" as Audit
+participant "Pharmacy/\nHUB" as Pharmacy
+
+== Happy Path ==
+EHR -> API: POST /rx-bundles\n(FHIR Bundle type=transaction)
+activate API
+API -> Val: 1. Structural (FHIR)\n2. Business Rules\n3. Basic Semantics
+activate Val
+Val --> API: OK
+deactivate Val
+API -> Route: Apply routing rules
+activate Route
+Route -> Pharmacy: Rx (FHIR or legacy format)
+activate Pharmacy
+Pharmacy --> Route: Fulfillment ACK / Status
+deactivate Pharmacy
+Route -> Audit: RxEvent (success)
+deactivate Route
+API --> EHR: 202 Accepted\n(Location: status URL)
+deactivate API
+
+== Error Path ==
+note over EHR,API: Invalid Bundle
+EHR -> API: POST /rx-bundles (bad data)
+API -> Val: Validation fails
+Val --> API: OperationOutcome\n(issue codes, details)
+API --> EHR: 400 Bad Request\n+ Error Bundle
+deactivate API
+
+note bottom: Idempotent, retryable, auditable
+@enduml

@@ -42,6 +42,7 @@ The MVP focuses on delivering a **single, reliable end‑to‑end Rx flow** acro
 
 - Availability and latency targets consistent with current expectations for the in‑scope flows (e.g., near real‑time routing, seconds not minutes).  
 - Basic monitoring: key metrics (volumes, error rates, latency) and alerting on failures for in‑scope interfaces.
+- Rhapsody high-availability design (active/passive clustering or equivalent) is a hard requirement for MVP — a single Rhapsody instance is not acceptable for production prescription routing.
 
 ---
 

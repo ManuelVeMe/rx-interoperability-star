@@ -164,6 +164,7 @@ Legacy fields:
 | MedicationRequest.note                      | Notes / allergy summary     | Optional   |
 | MedicationRequest.dispenseRequest.validityPeriod.start | Requested date | Optional   |
 
+> **Note on allergy summary (field 32):** For MVP, allergy summary text is captured as free text in `MedicationRequest.note`. The semantically correct FHIR resource for structured allergy data is `AllergyIntolerance`, referenced from the Bundle. This is intentionally deferred to Phase 2, when structured allergy data is reliably available from prescribing systems and the added complexity of an additional resource type is justified.
 ---
 
 ## 6. Coverage and payer mapping and contract
